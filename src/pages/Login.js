@@ -1,10 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
+import * as ROUTES from "../constants/routes";
 
 const Login = () => {
-	const submitHandler = (e) => {
-		e.preventDefault();
-	};
+	const navigate = useNavigate();
+	const {
+		emailAddress,
+		userExist,
+		setEmailAddress,
+		password,
+		setPassword,
+		error,
+		handleLogin,
+		isInvalid,
+	} = useLogin();
+
+	useEffect(() => {
+		document.title = "Login-Instagram";
+		if (userExist) {
+			navigate(ROUTES.DASHBOARD);
+		}
+	});
 
 	return (
 		<div className='flex flex-col items-center justify-center h-screen bg-slate-700'>
@@ -28,9 +45,12 @@ const Login = () => {
 						</Link>
 					</p>
 				</div>
+				{error && (
+					<p className=' text-center my-4 text-sm text-red-500'>{error}</p>
+				)}
 				<form
 					className='mt-8 space-y-6'
-					onSubmit={submitHandler}
+					onSubmit={handleLogin}
 				>
 					<input
 						type='hidden'
@@ -46,7 +66,9 @@ const Login = () => {
 								autoComplete='email'
 								required
 								placeholder='Email address'
+								value={emailAddress}
 								className='input input-bordered input-secondary w-full max-w-xs appearance-none relative block px-3 py-2  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-2 mx-3'
+								onChange={(e) => setEmailAddress(e.target.value)}
 							/>
 						</div>
 						<div>
@@ -54,10 +76,12 @@ const Login = () => {
 								id='password'
 								name='password'
 								type='password'
+								value={password}
 								autoComplete='current-password'
 								required
 								placeholder='Type your Password here'
 								className='input input-bordered input-secondary w-full max-w-xs appearance-none relative block px-3 py-2  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-2 mx-3'
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
 					</div>
@@ -91,7 +115,10 @@ const Login = () => {
 					<div>
 						<button
 							type='submit'
-							className='w-full py-2 mt-6 font-medium text-white uppercase bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+							className={`w-full py-2 mt-6 font-medium text-white uppercase bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+								isInvalid && "opacity-50"
+							}`}
+							disabled={isInvalid}
 						>
 							Log in
 						</button>

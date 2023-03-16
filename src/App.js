@@ -1,7 +1,10 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
+
 const Login = lazy(() => import("./pages/Login"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Signup = lazy(() => import("./pages/Signup"));
 
 function App() {
 	return (
@@ -11,6 +14,14 @@ function App() {
 					<Route
 						path={ROUTES.LOGIN}
 						element={<Login />}
+					/>
+					<Route
+						path={ROUTES.DASHBOARD}
+						element={<Dashboard />}
+					/>
+					<Route
+						path={ROUTES.SIGN_UP}
+						element={<Signup />}
 					/>
 				</Routes>
 			</Suspense>
