@@ -67,7 +67,7 @@ const Login = () => {
 								required
 								placeholder='Email address'
 								value={emailAddress}
-								className='input input-bordered input-secondary w-full max-w-xs appearance-none relative block px-3 py-2  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-2 mx-3'
+								className='input input-bordered input-primary w-full max-w-xs appearance-none relative block px-3 py-2focus:z-10 sm:text-sm my-2 mx-3'
 								onChange={(e) => setEmailAddress(e.target.value)}
 							/>
 						</div>
@@ -80,7 +80,7 @@ const Login = () => {
 								autoComplete='current-password'
 								required
 								placeholder='Type your Password here'
-								className='input input-bordered input-secondary w-full max-w-xs appearance-none relative block px-3 py-2  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-2 mx-3'
+								className='input input-bordered input-primary w-full max-w-xs appearance-none relative block px-3 py-2  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-2 mx-3'
 								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
