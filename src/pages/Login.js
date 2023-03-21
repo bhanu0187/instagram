@@ -21,7 +21,7 @@ const Login = () => {
 		if (userExist) {
 			navigate(ROUTES.DASHBOARD);
 		}
-	});
+	}, [userExist, navigate]);
 
 	return (
 		<div className='flex flex-col items-center justify-center h-screen bg-slate-700'>
