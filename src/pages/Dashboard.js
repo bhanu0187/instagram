@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "../components/Header";
+import LeftSection from "../components/LeftSection";
 
 const Dashboard = () => {
 	useEffect(() => {
@@ -8,6 +9,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			<Header />
+			{/* <LeftSection /> */}
 			<div></div>
 		</div>
 	);

@@ -21,7 +21,7 @@ const Login = () => {
 		if (userExist) {
 			navigate(ROUTES.DASHBOARD);
 		}
-	}, [userExist, navigate]);
+	});
 
 	return (
 		<div className='flex flex-col items-center justify-center h-screen bg-slate-700'>
@@ -32,7 +32,7 @@ const Login = () => {
 						src='./images/logo.png'
 						alt='Instagram'
 					/>
-					<h2 className='mt-6 text-3xl font-extrabold text-gray-900 prose lg:prose-h1:prose'>
+					<h2 className='mt-6 text-3xl font-extrabold text-gray-900  prose lg:prose-h1:prose'>
 						Log in to your account
 					</h2>
 					<p className='mt-2 text-sm text-gray-600'>
