@@ -13,8 +13,6 @@ const useLogin = () => {
 	const [userExist, setUserExist] = useState(false);
 	const [error, setError] = useState("");
 
-	console.log(emailAddress, password);
-
 	const isInvalid =
 		password === "" || emailAddress === "" || password.length < 6;
 

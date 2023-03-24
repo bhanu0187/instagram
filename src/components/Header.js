@@ -20,7 +20,7 @@ const Header = () => {
 								<img
 									src='/images/logo.png'
 									alt='logo'
-									className='mt-2 w-6/12'
+									className='mt-2 w-6/12 md:ml-2 sm:ml-4'
 								/>
 							</Link>
 						</h1>
@@ -75,7 +75,7 @@ const Header = () => {
 								<div className='flex items-center cursor-pointer'>
 									<Link to={`/p/${user.displayName}`}>
 										<img
-											src={`/images/avatars/karl.jpg`}
+											src={`/images/avatars/dali.jpg`}
 											alt='userProfilePicture'
 											className='rounded-full h-8 w-8 flex'
 										/>
@@ -83,7 +83,24 @@ const Header = () => {
 								</div>
 							</>
 						) : (
-							<></>
+							<>
+								<Link to={ROUTES.LOGIN}>
+									<button
+										type='button'
+										className='bg-blue-600 font-bold text-sm rounded text-white w-20 h-8 mx-4 text-center py-1'
+									>
+										Log In
+									</button>
+								</Link>
+								<Link to={ROUTES.SIGN_UP}>
+									<button
+										type='button'
+										className='font-bold text-sm py-1 rounded text-blue-500 text-center'
+									>
+										Sign Up
+									</button>
+								</Link>
+							</>
 						)}
 					</div>
 				</div>
