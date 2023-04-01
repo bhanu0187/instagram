@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const TimeLine = () => {
-	return <div>TimeLine</div>;
-};
+function TimeLine() {
+  return <div>TimeLine</div>;
+}
 
 export default TimeLine;

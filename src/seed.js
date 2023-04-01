@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-plusplus */
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from './lib/firebase';

@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 
+import { toast } from 'react-hot-toast';
 import { doesUserNameExist } from '../services/userNameExistCheck';
 import FirebaseContext from '../context/firebase';
 import { db } from '../lib/firebase';
@@ -56,6 +57,9 @@ const useSignup = () => {
           following: [],
           followers: [],
           dateCreated: Date.now(),
+        });
+        toast.success('User Created Succeffuly', {
+          duration: 3000,
         });
       } catch (err) {
         setPassword('');
