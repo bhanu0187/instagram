@@ -12,8 +12,11 @@ const Sidebar = () => {
 	console.log(userId);
 	return (
 		<div>
-			<User />
-			<Suggestion />
+			<User
+				username={username}
+				fullName={fullName}
+			/>
+			<Suggestion userId={userId} />
 		</div>
 	);
 };
