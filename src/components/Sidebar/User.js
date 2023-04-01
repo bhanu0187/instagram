@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const User = () => {
-	return <div>User</div>;
-};
+function User() {
+  return <div>User</div>;
+}
 
 export default User;
