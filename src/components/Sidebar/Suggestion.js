@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const Suggestion = () => {
-	return <div>Suggestion</div>;
-};
+function Suggestion() {
+  return <div>Suggestion</div>;
+}
 
 export default Suggestion;
