@@ -7,10 +7,10 @@ import {
 } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 
-import { toast } from 'react-hot-toast';
 import { doesUserNameExist } from '../services/userNameExistCheck';
 import FirebaseContext from '../context/firebase';
 import { db } from '../lib/firebase';
+import { toast } from 'react-hot-toast';
 
 const useSignup = () => {
   const { auth } = useContext(FirebaseContext);
