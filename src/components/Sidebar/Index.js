@@ -8,7 +8,7 @@ import User from './User';
 function Sidebar() {
   const [userLoaded, setUserLoaded] = useState(false);
   const {
-    user: { fullName, username, userId },
+    user: { fullName, username, userId, following },
   } = useUser();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function Sidebar() {
       ) : (
         <Skeleton count={1} height={61} className="bg-white" />
       )}
-      <Suggestion userId={userId} />
+      <Suggestion userId={userId} following={following} />
     </div>
   );
 }

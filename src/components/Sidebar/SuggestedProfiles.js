@@ -1,12 +1,13 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const User = ({ username, fullName }) => {
+const SuggestedProfiles = ({ userDocId, username, profileId, userId }) => {
   return (
     <SkeletonTheme baseColor="#fff" highlightColor="#fff">
-      {!username || !fullName ? (
+      {!username ? (
         <Skeleton count={1} height={61} />
       ) : (
         <Link
@@ -22,7 +23,7 @@ const User = ({ username, fullName }) => {
           </div>
           <div className="col-span-3">
             <p className="font-bold text-sm">{username}</p>
-            <p className="text-sm">{fullName}</p>
+            {/* <p className="text-sm">{fullName}</p> */}
           </div>
         </Link>
       )}
@@ -30,9 +31,4 @@ const User = ({ username, fullName }) => {
   );
 };
 
-export default memo(User);
-
-User.propTypes = {
-  username: PropTypes.string.isRequired,
-  fullName: PropTypes.string.isRequired,
-};
+export default SuggestedProfiles;
