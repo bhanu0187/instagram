@@ -67,6 +67,7 @@ const useSignup = () => {
         }, 2000);
       } catch (err) {
         setPassword('');
+        setEmailAddress('');
         toast.error(err.message, {
           duration: 4000,
         });
