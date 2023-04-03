@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -28,59 +28,66 @@ const useSignup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const userNameExist = await doesUserNameExist(userName);
-    const userEmailExist = await doesUserEmailExist(emailAddress);
+    const userNameExists = await doesUserNameExist(userName);
+    const userEmailExists = await doesUserEmailExist(emailAddress);
 
-    if (!userNameExist.length || !userEmailExist.length) {
-      try {
-        const createdUserResult = await createUserWithEmailAndPassword(
-          auth,
-          emailAddress,
-          password
-        );
-
-        sendEmailVerification(auth.currentUser).then(() => {
-          setUserIsVerified(false);
-          setEmailMessage(
-            'A Verification Email has been sent to your Email Address.'
-          );
-        });
-
-        updateProfile(auth.currentUser, {
-          displayName: userName,
-        });
-
-        await addDoc(collection(db, 'users'), {
-          userId: createdUserResult.user.uid,
-          username: userName,
-          fullName,
-          emailAddress: emailAddress.toLowerCase(),
-          following: [],
-          followers: [],
-          dateCreated: Date.now(),
-        });
-        toast.success('User has been Created Succeffuly Please log in', {
-          duration: 3000,
-        });
-        setTimeout(() => {
-          navigate(ROUTES.LOGIN);
-        }, 2000);
-      } catch (err) {
-        setPassword('');
-        setEmailAddress('');
-        toast.error(err.message, {
+    if (userNameExists.length || userEmailExists.length) {
+      toast.error(
+        'This username or email is already taken. Please choose another',
+        {
           duration: 4000,
-        });
-      }
-    } else {
-      toast.error('This Username is already taken. Please choose another', {
+        }
+      );
+      return;
+    }
+
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        emailAddress,
+        password
+      );
+      await updateProfile(user, {
+        displayName: userName,
+      });
+      await sendEmailVerification(user);
+      setUserIsVerified(false);
+      setEmailMessage(
+        'A verification email has been sent to your email address.'
+      );
+      toast.success('User has been created successfully. Please log in.', {
+        duration: 3000,
+      });
+
+      await addDoc(collection(db, 'users'), {
+        userId: user.uid,
+        username: userName,
+        fullName,
+        emailAddress: emailAddress.toLowerCase(),
+        following: [],
+        followers: [],
+        dateCreated: Date.now(),
+      });
+      setTimeout(() => {
+        navigate(ROUTES.LOGIN);
+      }, 2000);
+    } catch (err) {
+      setPassword('');
+      setEmailAddress('');
+      toast.error(err.message, {
         duration: 4000,
       });
     }
   };
+
+  const isInvalid =
+    !userName || !fullName || !emailAddress || !password || password.length < 6;
+
   return {
     userName,
     setUserName,
+    fullName,
+    setFullName,
     emailAddress,
     setEmailAddress,
     password,
@@ -90,8 +97,7 @@ const useSignup = () => {
     emailMessage,
     setEmailMessage,
     submitHandler,
-    fullName,
-    setFullName,
+    isInvalid,
   };
 };
 

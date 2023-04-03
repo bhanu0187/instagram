@@ -6,9 +6,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 const User = ({ username, fullName }) => {
   return (
     <SkeletonTheme baseColor="#fff" highlightColor="#fff">
-      {!username || !fullName ? (
-        <Skeleton count={1} height={61} />
-      ) : (
+      {username && fullName ? (
         <Link
           to={`/p/${username}`}
           className="grid grid-cols-4 gap-4 mb-6 items-center"
@@ -17,7 +15,7 @@ const User = ({ username, fullName }) => {
             <img
               src="/images/avatars/dali.jpg"
               alt="userProfilePicture"
-              className="rounded-full mr-3 flex w-14"
+              className="rounded-full flex w-12"
             />
           </div>
           <div className="col-span-3">
@@ -25,6 +23,8 @@ const User = ({ username, fullName }) => {
             <p className="text-sm">{fullName}</p>
           </div>
         </Link>
+      ) : (
+        <Skeleton count={1} height={61} />
       )}
     </SkeletonTheme>
   );
@@ -33,6 +33,6 @@ const User = ({ username, fullName }) => {
 export default memo(User);
 
 User.propTypes = {
-  username: PropTypes.string.isRequired,
-  fullName: PropTypes.string.isRequired,
+  username: PropTypes.string,
+  fullName: PropTypes.string,
 };

@@ -1,34 +1,40 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Toaster, toast } from 'react-hot-toast';
 
 const SuggestedProfiles = ({ userDocId, username, profileId, userId }) => {
-  return (
-    <SkeletonTheme baseColor="#fff" highlightColor="#fff">
-      {!username ? (
-        <Skeleton count={1} height={61} />
-      ) : (
-        <Link
-          to={`/p/${username}`}
-          className="grid grid-cols-4 gap-4 mb-6 items-center"
-        >
-          <div className="flex items-center justify-between col-span-1">
-            <img
-              src="/images/avatars/dali.jpg"
-              alt="userProfilePicture"
-              className="rounded-full mr-3 flex w-14"
-            />
-          </div>
-          <div className="col-span-3">
-            <p className="font-bold text-sm">{username}</p>
-            {/* <p className="text-sm">{fullName}</p> */}
-          </div>
+  const [followed, setFollowed] = useState(false);
+  return !followed ? (
+    <div className="flex flex-row items-center justify-between">
+      <div className="flex items-center justify-between">
+        <img
+          src="/images/avatars/orwell.jpg"
+          alt=""
+          className="rounded-full w-8 flex mr-3"
+        />
+        <Link to={`/p/${username}`}>
+          <p className="font-bold text-sm">{username}</p>
         </Link>
-      )}
-    </SkeletonTheme>
-  );
+      </div>
+      <button
+        type="button"
+        className="text-xs font-bold text-blue-700"
+        onClick={() => console.log('followed')}
+      >
+        follow
+      </button>
+    </div>
+  ) : null;
 };
 
 export default SuggestedProfiles;
+
+SuggestedProfiles.propTypes = {
+  userDocId: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  profileId: PropTypes.string.isRequired,
+};

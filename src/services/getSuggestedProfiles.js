@@ -8,11 +8,13 @@ export async function getSuggestedProfiles(userId, following) {
     limit(10)
   );
 
-  const result = await getDocs(q);
-  return result.docs
-    .map((user) => ({
-      ...user.data(),
-      docId: user.id,
+  const querySnapshot = await getDocs(q);
+  const suggestedProfiles = querySnapshot.docs
+    .map((doc) => ({
+      ...doc.data(),
+      docId: doc.id,
     }))
     .filter((profile) => !following.includes(profile.userId));
+
+  return suggestedProfiles;
 }
