@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getSuggestedProfiles } from '../../services/getSuggestedProfiles';
 import SuggestedProfiles from './SuggestedProfiles';
 
-function Suggestion({ userId, following, fullName }) {
+function Suggestion({ userId, following, fullName, loggedInUserDocId }) {
   const [profiles, setProfiles] = useState(null);
 
   useEffect(() => {
@@ -33,6 +33,8 @@ function Suggestion({ userId, following, fullName }) {
             profileId={profile.userId}
             userId={userId}
             fullName={fullName}
+            following={following}
+            loggedInUserDocId={loggedInUserDocId}
           />
         ))}
       </div>
@@ -45,6 +47,7 @@ Suggestion.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   following: PropTypes.array,
   fullName: PropTypes.string,
+  loggedInUserDocId: PropTypes.string,
 };
 
 export default Suggestion;

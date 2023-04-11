@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import UserContext from './context/user';
 import useAuthListener from './hooks/useAuthListener';
+import ProtectedRoutes from './components/ProtectedRoutes';
 
 const Login = lazy(() => import('./pages/Login'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -20,7 +21,14 @@ function App() {
         <Suspense fallback={<p>Loading....</p>}>
           <Routes>
             <Route path={ROUTES.LOGIN} element={<Login />} />
-            <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+            <Route
+              path={ROUTES.DASHBOARD}
+              element={
+                <ProtectedRoutes>
+                  <Dashboard />
+                </ProtectedRoutes>
+              }
+            />
             <Route path={ROUTES.SIGN_UP} element={<Signup />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
           </Routes>
