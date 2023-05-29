@@ -15,6 +15,7 @@ function Login() {
     error,
     handleLogin,
     isInvalid,
+    isLoading,
   } = useLogin();
 
   useEffect(() => {
@@ -109,12 +110,30 @@ function Login() {
           <div>
             <button
               type="submit"
-              className={`w-full py-2 mt-6 font-medium text-white uppercase bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+              className={`w-full py-2 mt-6 font-medium text-white uppercase bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex mr-3 justify-center items-center ${
                 isInvalid && 'opacity-50'
               }`}
-              disabled={isInvalid}
+              disabled={isInvalid && isLoading}
             >
-              Log in
+              {isLoading && (
+                <svg
+                  className="animate-spin h-5 w-5 mr-2 text-white"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25 stroke-white"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75 fill-white"
+                    d="M4 12a8 8 0 018-8V0c-4.418 0-8 3.582-8 8zm0 0a8 8 0 018 8v4c-4.418 0-8-3.582-8-8zm12 0a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              )}
+              {isLoading ? 'Logging In...' : 'Log In'}
             </button>
           </div>
         </form>

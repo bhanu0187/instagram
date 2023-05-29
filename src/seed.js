@@ -6,7 +6,7 @@ import { db } from './lib/firebase';
 export function seedDatabase() {
   const users = [
     {
-      userId: 'BGpXdV7jqbXDOIbUrguOSNExoMB2',
+      userId: 'UoIQ9emNIlZQWWj4peAI5Hq1sa42',
       username: 'karl',
       fullName: 'Karl Hadwen',
       emailAddress: 'karlhadwen@gmail.com',
@@ -20,7 +20,7 @@ export function seedDatabase() {
       fullName: 'Raffaello Sanzio da Urbino',
       emailAddress: 'raphael@sanzio.com',
       following: [],
-      followers: ['BGpXdV7jqbXDOIbUrguOSNExoMB2'],
+      followers: ['UoIQ9emNIlZQWWj4peAI5Hq1sa42'],
       dateCreated: Date.now(),
     },
     {
@@ -29,7 +29,7 @@ export function seedDatabase() {
       fullName: 'Salvador Dalí',
       emailAddress: 'salvador@dali.com',
       following: [],
-      followers: ['BGpXdV7jqbXDOIbUrguOSNExoMB2'],
+      followers: ['UoIQ9emNIlZQWWj4peAI5Hq1sa42'],
       dateCreated: Date.now(),
     },
     {
@@ -38,7 +38,7 @@ export function seedDatabase() {
       fullName: 'George Orwell',
       emailAddress: 'george@orwell.com',
       following: [],
-      followers: ['BGpXdV7jqbXDOIbUrguOSNExoMB2'],
+      followers: ['UoIQ9emNIlZQWWj4peAI5Hq1sa42'],
       dateCreated: Date.now(),
     },
   ];

@@ -13,11 +13,13 @@ const useLogin = () => {
   const [password, setPassword] = useState('');
   const [userExist, setUserExist] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const isInvalid = !emailAddress || !password || password.length < 6;
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const userCredentials = await signInWithEmailAndPassword(
@@ -29,11 +31,13 @@ const useLogin = () => {
       if (userEmail) {
         setUserExist(true);
       }
+      setIsLoading(false);
       navigate(ROUTES.DASHBOARD);
     } catch (error) {
       setEmailAddress('');
       setPassword('');
       setError(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -46,6 +50,7 @@ const useLogin = () => {
     error,
     handleLogin,
     isInvalid,
+    isLoading,
   };
 };
 

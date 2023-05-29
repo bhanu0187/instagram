@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import PropTypes from 'prop-types';
-import { getSuggestedProfiles } from '../../services/getSuggestedProfiles';
+import { getSuggestedProfiles } from '../../services';
 import SuggestedProfiles from './SuggestedProfiles';
 
 function Suggestion({ userId, following, fullName, loggedInUserDocId }) {

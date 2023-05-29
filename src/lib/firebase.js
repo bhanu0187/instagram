@@ -3,12 +3,12 @@ import { getFirestore, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCoLxb8JAZxDggdXM5QG0sddVXwcGIoEac',
-  authDomain: 'instagram0187.firebaseapp.com',
-  projectId: 'instagram0187',
-  storageBucket: 'instagram0187.appspot.com',
-  messagingSenderId: '683577519718',
-  appId: '1:683577519718:web:a1f878764fc462193bc7a7',
+  apiKey: 'AIzaSyB6dIto4a6CeSigixqSTWV7yh9cz9XoJvA',
+  authDomain: 'instaclone0187.firebaseapp.com',
+  projectId: 'instaclone0187',
+  storageBucket: 'instaclone0187.appspot.com',
+  messagingSenderId: '224516625163',
+  appId: '1:224516625163:web:0b5d3dc0b9069d1d92c80e',
 };
 
 const app = initializeApp(firebaseConfig);

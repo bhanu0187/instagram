@@ -8,8 +8,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-import { doesUserNameExist } from '../services/userNameExistCheck';
-import { doesUserEmailExist } from '../services/userEmailExist';
+import { doesUserNameExist, doesUserEmailExist } from '../services';
 import FirebaseContext from '../context/firebase';
 import { db } from '../lib/firebase';
 import * as ROUTES from '../constants/routes';
@@ -24,9 +23,11 @@ const useSignup = () => {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
+  const [loading, setIsLoading] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const userNameExists = await doesUserNameExist(userName);
     const userEmailExists = await doesUserEmailExist(emailAddress);
@@ -38,6 +39,7 @@ const useSignup = () => {
           duration: 4000,
         }
       );
+      setIsLoading(false);
       return;
     }
 
@@ -78,6 +80,7 @@ const useSignup = () => {
         duration: 4000,
       });
     }
+    setIsLoading(false);
   };
 
   const isInvalid =
@@ -98,6 +101,7 @@ const useSignup = () => {
     setEmailMessage,
     submitHandler,
     isInvalid,
+    loading,
   };
 };
 

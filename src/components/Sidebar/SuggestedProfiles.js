@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Toaster, toast } from 'react-hot-toast';
-import { updateFollowing } from '../../services/updateFollowing';
-import { updateFollowers } from '../../services/updateFollowers';
+import { updateFollowing, updateFollowers } from '../../services';
 
 const SuggestedProfiles = ({
   profileDocId,
